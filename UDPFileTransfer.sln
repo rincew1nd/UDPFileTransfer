@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPFileTransfer", "UDPFileTransfer\UDPFileTransfer.csproj", "{0A6278B4-CA38-4720-A944-376460EC68D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{7E90A10D-E949-449B-9AF9-CF6FC8E0A9EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{45346434-29D2-47E3-82B4-0BD210C20595}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A6278B4-CA38-4720-A944-376460EC68D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A6278B4-CA38-4720-A944-376460EC68D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A6278B4-CA38-4720-A944-376460EC68D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A6278B4-CA38-4720-A944-376460EC68D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E90A10D-E949-449B-9AF9-CF6FC8E0A9EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E90A10D-E949-449B-9AF9-CF6FC8E0A9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E90A10D-E949-449B-9AF9-CF6FC8E0A9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E90A10D-E949-449B-9AF9-CF6FC8E0A9EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45346434-29D2-47E3-82B4-0BD210C20595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45346434-29D2-47E3-82B4-0BD210C20595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45346434-29D2-47E3-82B4-0BD210C20595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45346434-29D2-47E3-82B4-0BD210C20595}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
