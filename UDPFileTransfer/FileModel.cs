@@ -34,6 +34,8 @@ namespace UDPFileTransfer
 		/// </summary>
 		private Dictionary<int, byte[]> _chunks;
 
+		private List<int> _sendedChunks;
+
 		/// <summary>
 		/// Создать объект для приёма файла
 		/// </summary>
@@ -48,6 +50,10 @@ namespace UDPFileTransfer
 			ChunkSize = chunkSize;
 
 			_chunks = new Dictionary<int, byte[]>();
+
+			_sendedChunks = new List<int>();
+			for (int i = 0; i < IndexCount; i++)
+				_sendedChunks.Add(i);
 		}
 
 		/// <summary>
@@ -60,16 +66,33 @@ namespace UDPFileTransfer
 		}
 		
 		/// <summary>
-		/// Получить список потерянных пакетов
+		/// Получить лист номеров чанков которые нужно отправить
 		/// </summary>
 		/// <returns></returns>
-		public List<int> LostChanks()
+		public List<int> ChunksToSend()
 		{
-			List<int> lostChankIndexes = new List<int>();
-			for (var i = 0; i < IndexCount; i++)
-				lostChankIndexes.Add(i);
+			List<int> chunksToSend = new List<int>();
+			for (var i = 0; i < (_sendedChunks.Count >= 10 ? 10 : _sendedChunks.Count); i++)
+			{
+				chunksToSend.Add(i);
+				_sendedChunks.Remove(i);
+			}
 			
-			return lostChankIndexes.Except(_chunks.Keys).ToList();
+			return chunksToSend;
+		}
+
+		/// <summary>
+		/// Добавить потерянные чанки в лист чанков на отправку
+		/// </summary>
+		/// <param name="lostedChunks"></param>
+		public void LostedChunks(List<int> lostedChunks)
+		{
+			_sendedChunks.AddRange(lostedChunks.Except(_sendedChunks));
+		}
+
+		public byte[] GetChunk(int chunkNumber)
+		{
+			return _chunks[chunkNumber];
 		}
 
 		/// <summary>

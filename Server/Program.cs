@@ -11,8 +11,9 @@ namespace Server
 	{
 		static void Main(string[] args)
 		{
-			var server = UDPFileSender.Start(8990);
+			var server = new UDPFileTransfer.Server("127.0.0.1", 8991, 8990);
 			server.RecieveFile();
+			Console.Read();
 		}
 	}
 }

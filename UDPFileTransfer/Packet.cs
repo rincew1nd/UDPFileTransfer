@@ -40,10 +40,17 @@ namespace UDPFileTransfer
 
 		public byte[] PullBytes(int count = 0)
 		{
+			if (count == 0) count = _buffer.Length - pointer + 1;
 			var dummyBuffer = new byte[count];
 			Buffer.BlockCopy(_buffer, pointer, dummyBuffer, 0, count);
 			pointer += count;
 			return dummyBuffer;
+		}
+
+		public bool PullBool()
+		{
+			pointer++;
+			return BitConverter.ToBoolean(_buffer, --pointer);
 		}
 
 		public void PushInt(int i)
@@ -69,6 +76,18 @@ namespace UDPFileTransfer
             Buffer.BlockCopy(bytes, 0, _buffer, pointer, bytes.Length);
             pointer += bytes.Length;
         }
+
+		public void PushBool(bool boolean)
+		{
+			Array.Resize(ref _buffer, pointer + 1);
+			Buffer.BlockCopy(BitConverter.GetBytes(boolean), 0, _buffer, pointer, 1);
+			pointer++;
+		}
+
+		public bool IsAnythingLeft(int size)
+		{
+			return (pointer + size) > _buffer.Length;
+		}
 
 	    public byte[] Build()
 	    {

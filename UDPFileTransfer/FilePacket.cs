@@ -22,10 +22,10 @@ namespace UDPFileTransfer
 		/// Буфер в пакет
 		/// </summary>
 		/// <param name="buffer"></param>
-		public FilePacket(byte[] buffer)
+		public FilePacket(Packet packet)
 		{
-			Index = BitConverter.ToInt32(buffer, 0);
-			Buffer.BlockCopy(buffer, 0, FileBytes, 0, buffer.Length - 4);
+			Index = packet.PullInt();
+			FileBytes = packet.PullBytes();
 		}
 	}
 }
