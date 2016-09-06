@@ -6,41 +6,48 @@ using System.Threading.Tasks;
 
 namespace UDPFileTransfer
 {
-	public class Packet
-	{
-		private byte[] _buffer;
-		private int pointer;
+    public class Packet
+    {
+        private byte[] _buffer;
+        private int pointer;
 
-		public Packet()
-		{
+        public Packet()
+        {
             _buffer = new byte[0];
             pointer = 0;
         }
 
-		public Packet(byte[] buffer)
-		{
-			_buffer = buffer;
-		    pointer = 0;
-		}
+        public Packet(byte[] buffer)
+        {
+            _buffer = buffer;
+            pointer = 0;
+        }
 
-		public int PullInt()
-		{
-			pointer += 4;
-			return BitConverter.ToInt32(_buffer, pointer-4);
-		}
+        public int PullInt()
+        {
+            pointer += 4;
+            return BitConverter.ToInt32(_buffer, pointer - 4);
+        }
 
-		public string PullString()
-		{
-			var size = PullInt();
-			var stringBuffer = new byte[size];
-			Buffer.BlockCopy(_buffer, pointer, stringBuffer, 0, size);
-			pointer += size;
-			return Encoding.ASCII.GetString(stringBuffer);
+        public string PullString()
+        {
+            try
+            {
+                var size = PullInt();
+                var stringBuffer = new byte[size];
+                Buffer.BlockCopy(_buffer, pointer, stringBuffer, 0, size);
+                pointer += size;
+                return Encoding.ASCII.GetString(stringBuffer);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
 		}
 
 		public byte[] PullBytes(int count = 0)
 		{
-			if (count == 0) count = _buffer.Length - pointer + 1;
+			if (count == 0) count = _buffer.Length - pointer;
 			var dummyBuffer = new byte[count];
 			Buffer.BlockCopy(_buffer, pointer, dummyBuffer, 0, count);
 			pointer += count;
@@ -92,6 +99,11 @@ namespace UDPFileTransfer
 	    public byte[] Build()
 	    {
 	        return _buffer;
+	    }
+
+	    public void ResetPointer()
+	    {
+	        pointer = 0;
 	    }
 	}
 }

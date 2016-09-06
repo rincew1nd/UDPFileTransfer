@@ -14,7 +14,7 @@ namespace Client
 		static void Main(string[] args)
 		{
 			var client = new UDPFileTransfer.Client("127.0.0.1", 8990, 8991);
-			client.SendFile(new FileModel("test", "test1", 4, 1032));
+			client.SendFile("E:\\cachegrind.out.58904");
 			Console.Read();
 		}
 	}

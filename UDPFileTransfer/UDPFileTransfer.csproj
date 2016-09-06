@@ -43,14 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Packet.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\FileChunk.cs" />
+    <Compile Include="Entities\Packet.cs" />
+    <Compile Include="Entities\Server.cs" />
+    <Compile Include="FileChunkBuilder.cs" />
     <Compile Include="UDPFileSender.cs" />
-    <Compile Include="FileModel.cs" />
-    <Compile Include="FilePacket.cs" />
+    <Compile Include="Entities\FileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UPDBase.cs" />
+    <Compile Include="Entities\UPDBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
